@@ -1,5 +1,6 @@
 import cv2
 import pose_detection
+import augment_shirt
 
 # Create a VideoCapture object to access the default camera (usually camera index 0)
 cap = cv2.VideoCapture(0)
@@ -18,6 +19,9 @@ while True:
     frame = li[0]
     keypoints = li[1]
     
+    # Augment the Shirt by super imposing the images
+    frame = augment_shirt.augment(frame, keypoints)
+
     # Display the captured frame
     cv2.imshow("Camera Feed", frame)
 
