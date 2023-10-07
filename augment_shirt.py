@@ -2,7 +2,8 @@ import cv2
 
 def augment(person_image , keypoints):
     t_shirt = cv2.imread("T-shirt.jpg", cv2.IMREAD_UNCHANGED)
-    
+
+
     result_image = person_image.copy()
     alpha_mask = t_shirt[:, :, 3] / 255.0  # Extract the alpha channel
     

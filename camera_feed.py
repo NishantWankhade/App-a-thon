@@ -20,7 +20,7 @@ while True:
     keypoints = li[1]
     
     # Augment the Shirt by super imposing the images
-    frame = augment_shirt.augment(frame, keypoints)
+    # frame = augment_shirt.augment(frame, keypoints)
 
     # Display the captured frame
     cv2.imshow("Camera Feed", frame)

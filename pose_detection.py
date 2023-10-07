@@ -3,7 +3,7 @@ import cv2
 
 def process(img):
     # Load a model
-    model = YOLO('yolov8n-pose.pt')  # load an official model
+    model = YOLO('Model\yolov8n-pose.pt')  # load an official model
     # model = YOLO('path/to/best.pt')  # load a custom model
 
     # Predict with the model

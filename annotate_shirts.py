@@ -8,7 +8,7 @@ window_name = "Annotate Image"
 cv2.namedWindow(window_name, cv2.WINDOW_NORMAL)
 cv2.imshow(window_name, img)
 
-total_point = 0
+
 
 #Define the events for the 
 # mouse_click. 
@@ -20,7 +20,7 @@ def mouse_click(event, x, y,
         total_point += 1
         cv2.imshow(window_name, img) 
    
-  
+total_point = 0
 cv2.setMouseCallback(window_name, mouse_click, total_point) 
 
 while True:
