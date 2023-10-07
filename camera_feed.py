@@ -4,6 +4,8 @@ import pose_detection
 # Create a VideoCapture object to access the default camera (usually camera index 0)
 cap = cv2.VideoCapture(0)
 
+cv2.namedWindow("Camera Feed", cv2.WINDOW_NORMAL)
+
 while True:
     # Read a frame from the camera
     ret, frame = cap.read()
@@ -11,9 +13,11 @@ while True:
     if not ret:
         break
 
-    # Process for pose detection on each frame
-    frame = pose_detection.process(frame)
-
+    # Process for pose detection on each frame returns image and keypoints after pose detection
+    li = pose_detection.process(frame)
+    frame = li[0]
+    keypoints = li[1]
+    
     # Display the captured frame
     cv2.imshow("Camera Feed", frame)
 
