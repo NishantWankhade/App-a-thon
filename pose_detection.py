@@ -17,6 +17,7 @@ def process(img):
             top.append(r.keypoints.xy[0][5:13].cpu().numpy())
     
     for j in top[0]:
-        cv2.circle(img, (int(j[0]), int(j[1])), radius=5, color=(0, 255, 0), thickness=-1)
+        if(j[0] != 0 and j[1] != 0) :
+            cv2.circle(img, (int(j[0]), int(j[1])), radius=5, color=(0, 255, 0), thickness=-1)
 
     return [img , top[0]]
