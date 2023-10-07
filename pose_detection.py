@@ -1,4 +1,6 @@
 from ultralytics import YOLO
+import cv2
+import torch
 
 def process(img):
     # Load a model
@@ -8,9 +10,13 @@ def process(img):
     # Predict with the model
     results = model(img)  # predict on an image
 
-    annotated_frame = results[0].plot()
-
+    # img = results[0].plot(kpt_line = False)
+    
+    top = []
     for r in results:
-        print(r.keypoints.xy)
+            top.append(r.keypoints.xy[0][5:11].cpu().numpy())
+    
+    for j in top[0]:
+        cv2.circle(img, (int(j[0]), int(j[1])), radius=5, color=(0, 255, 0), thickness=-1)
 
-    return annotated_frame
+    return img
