@@ -1,6 +1,6 @@
 # App-a-thon Hackthon
 
-College Mini Project
+Hackathon Project OpenCV + AR
 
 ### Setup for Running
 
