@@ -9,5 +9,7 @@ def process(img):
     results = model(img)  # predict on an image
 
     annotated_frame = results[0].plot()
+    for r in results:
+        print(r.keypoints)
 
     return annotated_frame
