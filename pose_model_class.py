@@ -1,5 +1,5 @@
-class Pose:
 
+class Pose:
     def __init__(self, kp):
         self.shoulder = [kp[1],kp[0]]
         self.elbow = [kp[3],kp[2]]

@@ -1,5 +1,6 @@
 from ultralytics import YOLO
 import cv2
+import numpy as np
 
 def process(img):
     # Load a model
@@ -14,10 +15,13 @@ def process(img):
     top = []
     for r in results:
             #Only keypoints of the fore arms and waist are sent
-            top.append(r.keypoints.xy[0][5:13].cpu().numpy())
+            top = np.array(r.keypoints.xy[0][5:13].cpu().numpy())
+            break
     
-    for j in top[0]:
-        if(j[0] != 0 and j[1] != 0) :
-            cv2.circle(img, (int(j[0]), int(j[1])), radius=5, color=(0, 255, 0), thickness=-1)
+    arr = []
+    for i in top:
+        arr.append([int(i[0]), int(i[1])])
+        if(i[0] != 0 and i[1] != 0) :
+            cv2.circle(img, (int(i[0]), int(i[1])), radius=5, color=(0, 255, 0), thickness=-1)
 
-    return [img , top[0]]
+    return [img , arr]
