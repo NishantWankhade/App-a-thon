@@ -26,7 +26,6 @@ while True:
 
     if(keypoints.size != 0):
         pose = pose_model_class.Pose(keypoints)
-        pose.show_points()
     
         # Augment the Shirt by super imposing the images
         frame = augment_shirt.augment(frame, pose)

@@ -6,7 +6,7 @@ def augment(person_image , pose):
     t_shirt = cv2.imread("T-shirt.jpg", cv2.IMREAD_UNCHANGED)
 
     # Scale image according to pose
-    person_image = resize_image.scaleImg(person_image, pose)
+    # person_image = resize_image.scaleImg(person_image, pose)
 
     pose.show_points()
     # result_image = person_image.copy()
@@ -17,5 +17,7 @@ def augment(person_image , pose):
 
     # # Display or save the augmented image
     # return result_image
+
+    return person_image
 
     
