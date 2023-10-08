@@ -1,7 +1,9 @@
 import cv2
+import numpy as np
 import pose_detection
 import augment_shirt
 import pose_model_class
+
 
 global pose 
 
@@ -20,12 +22,15 @@ while True:
     # Process for pose detection on each frame returns image and keypoints after pose detection
     li = pose_detection.process(frame)
     frame = li[0]
-    keypoints = li[1]
+    keypoints = np.array(li[1])
     
-    pose = pose_model_class.Pose(keypoints)
-
+    if(keypoints.size != 0):
+        pose = pose_model_class.Pose(keypoints)
+        pose.show_points()
+    
     # Augment the Shirt by super imposing the images
-    # frame = augment_shirt.augment(frame, keypoints)
+    # frame = augment_shirt.augment(frame, pose)
+    
 
     # Display the captured frame
     cv2.imshow("Camera Feed", frame)
