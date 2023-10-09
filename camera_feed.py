@@ -26,9 +26,11 @@ while True:
 
     if(keypoints.size != 0):
         pose = pose_model_class.Pose(keypoints)
-    
+
+        t_shirt = cv2.imread("T-shirt.jpg",cv2.IMREAD_UNCHANGED)
+
         # Augment the Shirt by super imposing the images
-        frame = augment_shirt.augment(frame, pose)
+        frame = augment_shirt.augment(frame, pose, t_shirt)
     
 
     # Display the captured frame
