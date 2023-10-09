@@ -27,6 +27,7 @@ while True:
     if(keypoints.size != 0):
         pose = pose_model_class.Pose(keypoints)
 
+        # cv2.IMREAD_UNCHANGED will be used to also take the alpha channel in the image
         t_shirt = cv2.imread("T-shirt.jpg",cv2.IMREAD_UNCHANGED)
 
         # Augment the Shirt by super imposing the images

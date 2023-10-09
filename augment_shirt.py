@@ -8,7 +8,7 @@ def augment(person_image , pose , t_shirt):
     t_shirt = resize_image.scaleImg(t_shirt, pose)
     print(t_shirt.shape)
 
-    result_image = person_image.copy()
+    # result_image = person_image.copy()
     shape = t_shirt.shape
 
     h = shape[0]
@@ -22,11 +22,11 @@ def augment(person_image , pose , t_shirt):
             for j in range(0, w):
                 r,g,b,a = t_shirt[i][j]
                 if(a != 0):
-                    result_image[i][j][0] = r
-                    result_image[i][j][1] = g
-                    result_image[i][j][2] = b
+                    person_image[i][j][0] = r
+                    person_image[i][j][1] = g
+                    person_image[i][j][2] = b
             
-        return result_image
+        return person_image
     else :
         return person_image
 
