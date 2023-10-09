@@ -10,7 +10,7 @@ def scaleImg(img, pose):
     print(height)
     print(width)
 
-    if(height >= width) :
+    if(height != 0 and width != 0 and height >= width) :
         img = cv2.resize(img, (width,height))
 
     return img
