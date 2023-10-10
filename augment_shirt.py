@@ -8,8 +8,8 @@ def augment(person_image , pose , t_shirt):
     t_shirt = resize_image.scaleImg(t_shirt, pose)
     # print(t_shirt.shape)
 
-    start_y = pose.shoulder[1][1]
-    start_x = pose.shoulder[1][0]
+    start_y = pose.shoulder[0][1] - 30
+    start_x = pose.shoulder[0][0] - 40
 
     # result_image = person_image.copy()
     shape = t_shirt.shape

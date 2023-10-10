@@ -4,8 +4,8 @@ def scaleImg(img, pose):
     shoulder = pose.shoulder
     waist = pose.waist
     
-    width = abs(shoulder[1][0] - shoulder[0][0])
-    height = abs(shoulder[1][1] - waist[1][1])
+    width = abs(shoulder[1][0] - shoulder[0][0]) + 80
+    height = abs(shoulder[1][1] - waist[1][1]) + 40
     
     # print(height)
     # print(width)
@@ -15,4 +15,4 @@ def scaleImg(img, pose):
 
     return img
 
-    
+
