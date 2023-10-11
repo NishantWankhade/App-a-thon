@@ -6,41 +6,42 @@ import pose_model_class
 
 
 global pose 
+def take_feed(frame_placeholder, stop_button_pressed):
+    # Create a VideoCapture object to access the default camera (usually camera index 0)
+    cap = cv2.VideoCapture(0)
 
-# Create a VideoCapture object to access the default camera (usually camera index 0)
-cap = cv2.VideoCapture(0)
+    cv2.namedWindow("Camera Feed", cv2.WINDOW_NORMAL)
 
-cv2.namedWindow("Camera Feed", cv2.WINDOW_NORMAL)
+    while cap.isOpened() and not stop_button_pressed:
+        # Read a frame from the camera
+        ret, frame = cap.read()
 
-while True:
-    # Read a frame from the camera
-    ret, frame = cap.read()
+        if not ret:
+            break
 
-    if not ret:
-        break
+        # Process for pose detection on each frame returns image and keypoints after pose detection
+        li = pose_detection.process(frame)
+        frame = li[0]
+        keypoints = np.array(li[1])
 
-    # Process for pose detection on each frame returns image and keypoints after pose detection
-    li = pose_detection.process(frame)
-    frame = li[0]
-    keypoints = np.array(li[1])
+        if(keypoints.size != 0):
+            pose = pose_model_class.Pose(keypoints)
 
-    if(keypoints.size != 0):
-        pose = pose_model_class.Pose(keypoints)
+            # cv2.IMREAD_UNCHANGED will be used to also take the alpha channel in the image
+            t_shirt = cv2.imread("T-shirt.jpg",cv2.IMREAD_UNCHANGED)
 
-        # cv2.IMREAD_UNCHANGED will be used to also take the alpha channel in the image
-        t_shirt = cv2.imread("T-shirt.jpg",cv2.IMREAD_UNCHANGED)
+            # Augment the Shirt by super imposing the images
+            frame = augment_shirt.augment(frame, pose, t_shirt)
+        
 
-        # Augment the Shirt by super imposing the images
-        frame = augment_shirt.augment(frame, pose, t_shirt)
-    
+        # Display the captured frame
+        # cv2.imshow("Camera Feed", frame)
+        frame_placeholder.image(frame,channels="RGB")
 
-    # Display the captured frame
-    cv2.imshow("Camera Feed", frame)
+        # Break the loop when 'q' is pressed
+        if cv2.waitKey(1) & 0xFF == ord("q") or stop_button_pressed:
+            break
 
-    # Break the loop when 'q' is pressed
-    if cv2.waitKey(1) & 0xFF == ord("q"):
-        break
-
-# Release the VideoCapture and close the OpenCV window
-cap.release()
-cv2.destroyAllWindows()
+    # Release the VideoCapture and close the OpenCV window
+    cap.release()
+    cv2.destroyAllWindows()

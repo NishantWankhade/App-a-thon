@@ -19,3 +19,9 @@ Hackathon Project OpenCV + AR
 4. Install **ultralytics** package for running YOLO model
 
    `pip install ultralytics`
+
+---
+### Streamlit Webapp
+
+
+_Reference for streamlit webapp_:- [Github petermartens98](https://github.com/petermartens98/Streamlit-OpenCV-Webcam-Display-Web-App/blob/main/main.py)
