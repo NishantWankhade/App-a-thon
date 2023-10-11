@@ -36,7 +36,7 @@ def take_feed(frame_placeholder, stop_button_pressed):
 
         # Display the captured frame
         # cv2.imshow("Camera Feed", frame)
-        frame_placeholder.image(frame,channels="RGB")
+        frame_placeholder.image(frame,channels="BGR")
 
         # Break the loop when 'q' is pressed
         if cv2.waitKey(1) & 0xFF == ord("q") or stop_button_pressed:
